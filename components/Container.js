@@ -7,14 +7,14 @@ export default function Container(props) {
   const { children, ...customMeta } = props;
   const router = useRouter();
   const meta = {
-    title: "Catapult — Studio for websites, SEO, and AI",
+    title: "Replicant Media — websites, SEO, ads, and automations",
     description:
-      "Independent studio. We build the systems behind modern brands — websites that convert, search that ranks, and AI that ships.",
-    image: "https://devcatapult.com/static/og.png",
+      "Replicant Media builds clear websites, SEO systems, paid acquisition, and practical automations for owner-led service businesses.",
+    image: "https://replicant.media/static/og.png",
     type: "website",
     ...customMeta,
   };
-  const url = `https://devcatapult.com${router.asPath}`;
+  const url = `https://replicant.media${router.asPath}`;
 
   return (
     <>
@@ -25,19 +25,19 @@ export default function Container(props) {
         <link rel="canonical" href={url} />
         <meta property="og:url" content={url} />
         <meta property="og:type" content={meta.type} />
-        <meta property="og:site_name" content="Catapult" />
+        <meta property="og:site_name" content="Replicant Media" />
         <meta property="og:locale" content="en_US" />
         <meta property="og:title" content={meta.title} />
         <meta property="og:description" content={meta.description} />
         <meta property="og:image" content={meta.image} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="Catapult — sites that rank. AI that ships." />
+        <meta property="og:image:alt" content="Replicant Media — websites, SEO, ads, and automations." />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={meta.title} />
         <meta name="twitter:description" content={meta.description} />
         <meta name="twitter:image" content={meta.image} />
-        <meta name="twitter:image:alt" content="Catapult — sites that rank. AI that ships." />
+        <meta name="twitter:image:alt" content="Replicant Media — websites, SEO, ads, and automations." />
       </Head>
       <a href="#main" className="skip-nav">
         Skip to content
@@ -72,10 +72,10 @@ function SiteHeader() {
           href="#top"
           className="font-display font-black text-2xl md:text-[28px] tracking-ultratight leading-none uppercase text-ink"
         >
-          Catapult
+          Replicant
           <span className="text-ink-muted">/</span>
           <span className="text-ink-muted text-sm align-top tracking-wider">
-            STUDIO
+            MEDIA
           </span>
         </a>
         <nav className="flex items-center gap-2 md:gap-3">
@@ -102,7 +102,7 @@ function SiteHeader() {
             className="btn-ink"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-acid animate-pulse" aria-hidden />
-            <span>Start a project</span>
+            <span>Talk to us</span>
           </a>
         </nav>
       </div>
@@ -117,11 +117,11 @@ function SiteFooter() {
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10">
           <div>
             <div className="font-display font-black text-5xl md:text-7xl tracking-ultratight leading-none uppercase text-ink">
-              Catapult
+              Replicant Media
               <span className="text-acid-deep">*</span>
             </div>
             <div className="mt-3 font-mono text-[11px] uppercase tracking-[0.22em] text-ink-muted">
-              [ Studio for websites, SEO &amp; AI ]
+              [ Websites, SEO, ads &amp; automations for service businesses ]
             </div>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-6 font-mono text-[11px] uppercase tracking-[0.16em]">
@@ -140,7 +140,7 @@ function SiteFooter() {
                 </li>
                 <li>
                   <a href="#services" className="inline-flex items-center min-h-[44px] hover:text-acid-deep transition-colors">
-                    → AI
+                    → Automations
                   </a>
                 </li>
               </ul>
@@ -170,10 +170,10 @@ function SiteFooter() {
               <ul className="mt-2 text-ink font-bold">
                 <li>
                   <a
-                    href="mailto:hello@devcatapult.com"
+                    href="mailto:alex@replicant.media"
                     className="inline-flex items-center min-h-[44px] hover:text-acid-deep transition-colors lowercase tracking-normal"
                   >
-                    hello@devcatapult.com
+                    alex@replicant.media
                   </a>
                 </li>
               </ul>
@@ -181,10 +181,10 @@ function SiteFooter() {
           </div>
         </div>
         <div className="mt-12 pt-6 border-t-2 border-ink flex flex-col md:flex-row md:items-center md:justify-between gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-ink-muted">
-          <span>© {new Date().getFullYear()} Catapult — Made independently.</span>
+          <span>© {new Date().getFullYear()} Replicant Media — Built in public, shipped carefully.</span>
           <span className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-acid animate-pulse" aria-hidden />
-            <span>devcatapult.com — Online</span>
+            <span>replicant.media — Online</span>
           </span>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 const DENSITY = " .·:-=+*#%@";
-const NOISE_CHARS = " .·:-catapult☄️☄️☄️☄️☄️☄️";
+const NOISE_CHARS = " .·:-replicant✦✦✦✦✦✦";
 const SUPERSAMPLE = 2;
 
 /* Deterministic 3D hash → [0, 1). Stable per (x, y, t), so disruption cells

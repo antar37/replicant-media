@@ -29,7 +29,7 @@ export default async function handler(req, res) {
       .replace(/>/g, "&gt;");
 
   const lines = [
-    "<b>📨 New Catapult brief</b>",
+    "<b>📨 New Replicant Media brief</b>",
     `<b>Email:</b> ${escape(email)}`,
     `<b>Type:</b> ${escape(type)}`,
   ];

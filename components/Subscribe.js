@@ -6,8 +6,8 @@ import SuccessMessage from "./SuccessMessage";
 const TYPES = [
   { id: "Website", label: "Website" },
   { id: "SEO", label: "SEO" },
-  { id: "AI", label: "AI" },
-  { id: "Multiple", label: "All of it" },
+  { id: "Ads", label: "Ads" },
+  { id: "Automation", label: "Automation" },
 ];
 
 export default function Subscribe() {
@@ -48,7 +48,7 @@ export default function Subscribe() {
       detailsEl.current.value = "";
       setForm({
         state: "Success",
-        message: "Got it. We'll be in touch within two business days.",
+        message: "Got it. We'll reply with a practical next step.",
       });
     } catch (err) {
       setForm({
@@ -86,14 +86,14 @@ export default function Subscribe() {
           ref={companyEl}
           type="text"
           autoComplete="organization"
-          placeholder="What you're working on"
+          placeholder="Business or website"
           className="field"
           disabled={loading}
         />
       </Field>
 
       <div>
-        <Label>What do you need?</Label>
+        <Label>What needs fixing?</Label>
         <div className="mt-3 grid grid-cols-2 md:grid-cols-4 gap-2">
           {TYPES.map((t) => (
             <button
@@ -115,7 +115,7 @@ export default function Subscribe() {
         <textarea
           ref={detailsEl}
           rows={4}
-          placeholder="A few sentences on goals, timeline, and what you've already tried."
+          placeholder="What is not working yet? Leads, search, ads, operations, website clarity, or something else."
           className="field"
           disabled={loading}
         />
@@ -123,7 +123,7 @@ export default function Subscribe() {
 
       <div className="pt-4 flex flex-col-reverse md:flex-row md:items-center md:justify-between gap-4">
         <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-muted font-bold">
-          {"// "}Reply within 2 business days
+          {"// "}No bloated proposal deck
         </p>
         <button
           type="submit"

@@ -1,46 +1,48 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Claude Code when working with code in this repository.
 
 ## Commands
 
-- `pnpm build` — production build
-- `pnpm start` — run the production build
-- `pnpm lint` — ESLint with `eslint-config-next` flat config (`next/core-web-vitals`)
-- Do **not** run `pnpm dev` / `yarn dev` / `next dev` — the user runs the dev server themselves.
+- `pnpm build` - production build
+- `pnpm start` - run the production build
+- `pnpm lint` - ESLint with `eslint-config-next` flat config (`next/core-web-vitals`)
+- Use `corepack pnpm ...` if `pnpm` is not on PATH.
 - No test runner is configured.
-- Package manager is pnpm (pinned via `packageManager` in `package.json`; `pnpm-lock.yaml` is committed). Deployed on Vercel at devcatapult.com.
+- Package manager is pnpm, pinned via `packageManager` in `package.json`; `pnpm-lock.yaml` is committed.
 
 ## What this site is
 
-Single-page Next.js 12 marketing site (Pages Router, JavaScript — no TypeScript) for **Catapult**, an independent studio that does **websites, SEO, and AI consulting**. The whole product surface is `pages/index.js` plus one Notion-backed contact API route.
+Single-page Next.js marketing site for Replicant Media. The site should make the business concrete: websites, SEO, Google Ads, reporting, and practical automations for owner-led service businesses. Avoid vague “digital solutions” language.
 
-## Design system (commit to it)
+The main product surface is `pages/index.js` plus the Telegram-backed contact API route in `pages/api/subscribe.js`.
 
-Brutalist aesthetic. Don't soften it.
+## Design system
 
-- **Palette** (in `tailwind.config.js`): `bone` (#EAE6D8 cream bg) + `ink` (#080808 near-black) + `acid` (#CCFF02 lime accent). No dark-mode toggle.
-- **Type**: `font-display` = Big Shoulders Display (massive uppercase headlines), `font-mono` / `font-sans` = Space Mono (everything else, body included). Loaded from Google Fonts in `pages/_document.js`.
-- **Borders**: 2px solid ink, **no rounded corners**. Card grids use `gap-px bg-ink border-2 border-ink` so the grid lines themselves become the rules.
-- **Hover**: hard color flips (`flip-card` class in `globals.css`), no soft transitions — service cards invert ink/bone on hover, `.flip-mark`/`.flip-accent`/`.flip-rule` swap accordingly.
-- **Buttons**: `.btn-ink` (filled, hover→acid) and `.btn-acid` (acid fill that translates -3px and drops a 6px ink stamp shadow on hover). `.brutal-link` and `.chip` defined in `globals.css`.
-- **Form fields**: `.field` class — transparent with 2px ink underline, `:focus` adds an acid background tint. Toggle chips use `data-active="true"`.
+Brutalist aesthetic. Keep the strong grid, big type, cream/black/lime palette, and sharp edges.
+
+- Palette: `bone` (#EAE6D8), `ink` (#080808), `acid` (#CCFF02), configured in `tailwind.config.js`.
+- Type: `font-display` = Big Shoulders Display for massive uppercase headlines; `font-mono` / `font-sans` = Space Mono.
+- Borders: 2px solid ink, no rounded corners.
+- Hover: hard color flips on `.flip-card`; no soft agency gradients.
+- Buttons: `.btn-ink` and `.btn-acid` in `globals.css`.
+- Form fields: `.field` transparent inputs with 2px underline; toggle chips use `data-active="true"`.
 
 ## Interactive primitives
 
-These are the moving parts. Don't reimplement — reuse.
-
-- **`components/Cursor.js`** — mounted once in `Container.js`. Two fixed divs (dot + lagging ring) with `mix-blend-mode: difference` over the page. Auto-detects `(hover: hover) and (pointer: fine)`; bails out on touch and `prefers-reduced-motion`. Adds `.is-hover` (over `a, button, input, textarea, [role="button"], [data-cursor], [data-magnetic]`), `.is-text` (over `[data-cursor='text']`), `.is-pressed` (mousedown). Native cursor is hidden globally in `globals.css` — every interactive must keep this contract or the cursor disappears.
-- **`components/AsciiField.js`** — the hero centerpiece (and 404 hero). Renders `text` as a live monospace character grid: text → offscreen canvas → density mask → `<pre>` rendered every RAF frame, mapping density → char from `" .·:-=+*#%@"`. Each cell breathes via a sinusoidal time offset; the cursor disrupts cells inside `haloRadius` by replacing them with random `NOISE_CHARS`. Grid resolution adapts to viewport (46×13 / 74×18 / 100×24 / 118×26), font-size auto-scales via ResizeObserver to the measured Space Mono char width, and the mask is rebuilt only after `document.fonts.ready` so Big Shoulders has loaded. Respects `prefers-reduced-motion`. The wrapping div carries `role="img"` + `aria-label={text}` for screen readers and `data-cursor="text"` so the custom cursor flips to its I-beam shape over it. **Do not reintroduce `<Scramble>`** — the user explicitly rejected the letter-flip aesthetic.
-- **`components/Magnetic.js`** — wraps a child so it translates toward the cursor while inside `radius` px. Uses `[data-magnetic]` so the cursor picks it up as interactive.
-- **`lib/useReveal.js`** — IntersectionObserver hook. Returns `[ref, visible]`; pair with `.reveal-up` + `.is-visible` classes for staggered scroll reveals (the convention used by every section in `index.js`).
-- **Spotlight on flip-cards** — `.flip-card` defines `--mx`/`--my` CSS vars and a radial-gradient `::before` that's invisible until hover. `pages/index.js` exports a top-level `spotlight(e)` handler attached via `onMouseMove` to every `<ServiceCard>` and `<Principle>` — it writes the cursor's element-relative position into those vars so the acid-tinted halo follows the cursor across the dark hovered card.
-- **Hero parallax** — the giant `*` in `pages/index.js Hero` translates with the cursor via a direct mousemove listener (not Magnetic — the offset is window-relative, not element-relative).
+- `components/Cursor.js` mounts once in `Container.js`. It automatically disables itself on touch devices and reduced-motion contexts.
+- `components/AsciiField.js` renders the passive hero/404 ASCII text field. Keep it decorative and non-blocking.
+- Do not reintroduce the playable ASCII/Joust game. It was removed because it is not usable enough on mobile.
+- `components/Magnetic.js` wraps CTA buttons.
+- `lib/useReveal.js` powers scroll reveals with `.reveal-up` / `.is-visible`.
+- `spotlight(e)` in `pages/index.js` drives the hover glow on cards.
 
 ## Architecture notes
 
-- **Pages Router**: `pages/index.js` is the only page. `pages/_app.js` is minimal — just `reportWebVitals` piping to `window.gtag` and rendering `<Component />`. `pages/_document.js` injects Google Analytics, Google Fonts (preconnect + stylesheet), and a `ProfessionalService` JSON-LD `<script>` for SEO.
-- **Layout shell** (`components/Container.js`): owns `<Head>` SEO/OG meta with canonical `https://devcatapult.com${asPath}`, mounts `<Cursor />` once, and renders the sticky header + brutalist footer. Wrap any new page in it.
-- **Subscribe flow**: `components/Subscribe.js` (form, Website/SEO/AI/Multiple toggle) → `POST /api/subscribe` → `pages/api/subscribe.js` posts an HTML-formatted message to Telegram via `https://api.telegram.org/bot<TOKEN>/sendMessage`. Requires env vars `TELEGRAM_BOT_KEY` and `TELEGRAM_CHAT_ID` (kept in `.env.local`). The form's "project details" textarea is sent as `company_url` and rendered as the `Details` block in the Telegram message — intentional, kept as-is to avoid touching the form contract.
-- **Absolute imports**: `jsconfig.json` sets `baseUrl: "."`, so imports use bare paths like `import Container from "components/Container"`, `import useReveal from "lib/useReveal"`, `import "styles/globals.css"`.
-- **Tailwind content scan**: `pages/**/*.js` and `components/**/*.js` only. New top-level dirs need to be added to `content` in `tailwind.config.js`. The typography plugin was removed — do not re-add unless you're bringing back prose.
+- Pages Router: `pages/index.js` is the only main page.
+- Layout shell: `components/Container.js` owns SEO/OG meta with canonical `https://replicant.media${asPath}`, header, footer, and cursor.
+- Structured data lives in `pages/_document.js`.
+- Markdown fallback for agents/curl lives in `proxy.js` and should mirror the homepage positioning.
+- Subscribe flow: `components/Subscribe.js` posts to `/api/subscribe`; `pages/api/subscribe.js` sends the brief to Telegram using `TELEGRAM_BOT_KEY` and `TELEGRAM_CHAT_ID`.
+- Absolute imports use `jsconfig.json` baseUrl `.`.
+- Tailwind scans `pages/**/*.js` and `components/**/*.js` only.

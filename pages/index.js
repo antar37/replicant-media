@@ -1,6 +1,4 @@
-import { useState } from "react";
 import AsciiField from "components/AsciiField";
-import AsciiJoust from "components/AsciiJoust";
 import Container from "components/Container";
 import Magnetic from "components/Magnetic";
 import Subscribe from "components/Subscribe";
@@ -14,14 +12,10 @@ function spotlight(e) {
 }
 
 export default function Home() {
-  const [gameActive, setGameActive] = useState(false);
   return (
     <Container>
-      {/* Game only mounts after the user clicks the marquee; until then,
-          the hero shows the AsciiField "CATAPULT" watermark. */}
-      {gameActive && <AsciiJoust startActive />}
       <Hero />
-      <Marquee onActivate={() => setGameActive(true)} />
+      <Marquee />
       <Services />
       <Work />
       <Manifesto />
@@ -39,15 +33,14 @@ function Hero() {
       id="top"
       className="relative px-5 md:px-10 max-w-[1440px] mx-auto pt-10 md:pt-16 pb-20 md:pb-32 overflow-hidden"
     >
-      {/* Ambient ASCII watermark — passive brand decoration, replaced by the
-          playable game once the user clicks the marquee strip. */}
+      {/* Ambient ASCII watermark. */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none opacity-[0.22] mix-blend-multiply animate-fade"
         style={{ animationDelay: "0.1s", animationDuration: "1.8s" }}
       >
         <AsciiField
-          text="CATAPULT"
+          text="REPLICANT"
           haloRadius={14}
           disruptionRate={3}
           className="w-full h-full"
@@ -61,10 +54,10 @@ function Hero() {
       >
         <span className="flex items-center gap-3 font-bold">
           <span className="w-2 h-2 bg-acid block animate-pulse" aria-hidden />
-          EST. 2026 / INDEPENDENT STUDIO
+          REPLICANT MEDIA / QUERETARO + REMOTE
         </span>
         <span className="hidden md:flex items-center gap-3 font-bold">
-          AVAILABLE FOR Q3 / 02 SLOTS LEFT
+          WEBSITES / SEO / ADS / AUTOMATION
         </span>
       </div>
 
@@ -78,16 +71,16 @@ function Hero() {
           stagger in with `animate-rise`/`animate-fade`. */}
       <h1 className="relative font-display font-black tracking-ultratight leading-[0.85] text-ink uppercase pointer-events-none">
         <span data-game-platform className="block text-[18vw] md:text-[14vw] lg:text-[12.5rem]">
-          SITES THAT
+          MAKE THE
         </span>
         <span className="block text-[18vw] md:text-[14vw] lg:text-[12.5rem]">
           <span data-game-platform className="bg-ink text-acid px-3 md:px-5 inline-block">
-            RANK.
+            WEB
           </span>{" "}
-          <span data-game-platform>AI</span>
+          <span data-game-platform>WORK</span>
         </span>
         <span data-game-platform className="block text-[18vw] md:text-[14vw] lg:text-[12.5rem]">
-          THAT SHIPS.
+          MAKE SENSE.
         </span>
       </h1>
 
@@ -97,11 +90,11 @@ function Hero() {
           className="md:col-start-7 md:col-span-6 text-base md:text-xl leading-relaxed text-ink font-mono max-w-2xl animate-rise"
           style={{ animationDelay: "0.95s" }}
         >
-          <span className="text-ink-muted">[ &gt; ]</span> A studio for{" "}
-          <span className="bg-acid px-1.5 font-bold">websites that convert</span>,{" "}
-          <span className="bg-acid px-1.5 font-bold">search that ranks</span>,
-          and <span className="bg-acid px-1.5 font-bold">AI that ships</span>.
-          We handle the strategy, the build, and the long tail.
+          <span className="text-ink-muted">[ &gt; ]</span> Replicant Media helps owner-led service businesses turn messy online marketing into{" "}
+          <span className="bg-acid px-1.5 font-bold">clear websites</span>,{" "}
+          <span className="bg-acid px-1.5 font-bold">measurable search and ads</span>,
+          and <span className="bg-acid px-1.5 font-bold">useful automations</span>.
+          No vague digital transformation pitch. Just the work that gets leads and saves time.
         </p>
       </div>
 
@@ -113,7 +106,7 @@ function Hero() {
         <Magnetic strength={0.32} radius={140}>
           <a href="#contact" data-game-platform className="btn-acid">
             <span className="w-2 h-2 bg-ink block" aria-hidden />
-            <span>Start a project</span>
+            <span>Talk through the mess</span>
             <span aria-hidden>→</span>
           </a>
         </Magnetic>
@@ -126,10 +119,10 @@ function Hero() {
       {/* Bottom strip with stats */}
       <div className="mt-20 md:mt-28 grid grid-cols-2 md:grid-cols-4 gap-px bg-ink border-2 border-ink pointer-events-none">
         {[
-          ["03", "Practices"],
-          ["100%", "Custom"],
-          ["2-12wk", "Engagements"],
-          ["∞", "Compounding"],
+          ["04", "Core services"],
+          ["01", "Owner operator"],
+          ["2-12wk", "Build cycles"],
+          ["0", "Mystery decks"],
         ].map(([n, label]) => (
           <div key={label} data-game-platform className="bg-bone p-5 md:p-6">
             <div className="font-display font-black text-5xl md:text-6xl leading-none tracking-ultratight text-ink">
@@ -147,31 +140,24 @@ function Hero() {
 
 /* ---------- Marquee strip ---------- */
 
-function Marquee({ onActivate }) {
+function Marquee() {
   const items = [
     "MARKETING SITES",
     "WEB APPS",
     "PROGRAMMATIC SEO",
     "TECHNICAL SEO",
-    "AI AGENTS",
-    "LLM FEATURES",
-    "INTERNAL TOOLING",
+    "LOCAL SEO",
+    "GOOGLE ADS",
+    "INTERNAL AUTOMATION",
     "CONVERSION DESIGN",
     "SCHEMA & STRUCTURED DATA",
     "CONTENT INFRASTRUCTURE",
-    "MODEL EVALS",
+    "REPORTING",
     "WORKFLOW AUTOMATION",
   ];
   const doubled = [...items, ...items];
   return (
-    <button
-      type="button"
-      onClick={onActivate}
-      data-game-platform
-      aria-label="Click to play Joust on this page"
-      title="Click to play Joust"
-      className="group relative block w-full bg-acid border-y-2 border-ink overflow-hidden cursor-pointer text-left"
-    >
+    <div className="relative block w-full bg-acid border-y-2 border-ink overflow-hidden text-left">
       <div className="marquee-track animate-marquee py-4 md:py-5 text-ink">
         {doubled.map((item, i) => (
           <span
@@ -185,12 +171,7 @@ function Marquee({ onActivate }) {
           </span>
         ))}
       </div>
-      {/* Play hint — pulses softly to suggest interactivity */}
-      <span className="pointer-events-none absolute right-3 md:right-5 top-1/2 -translate-y-1/2 z-10 inline-flex items-center gap-2 px-2.5 py-1 bg-ink text-acid font-mono text-[10px] md:text-[11px] uppercase tracking-[0.22em] font-bold animate-pulse">
-        <span className="w-1.5 h-1.5 bg-acid block" aria-hidden />
-        click to play joust
-      </span>
-    </button>
+    </div>
   );
 }
 
@@ -201,41 +182,54 @@ function Services() {
   const services = [
     {
       number: "01",
-      verb: "Build",
-      title: "Websites & Web Apps",
-      lede: "Custom marketing sites, product surfaces, and internal tools — designed for trust, speed, and conversion.",
+      verb: "Clarify",
+      title: "Positioning & Website Strategy",
+      lede: "We pin down what you sell, who it is for, and why a buyer should trust you before we touch the layout.",
       items: [
-        "Marketing sites",
-        "Product UI & dashboards",
-        "Headless CMS & content infra",
-        "Conversion-led design",
-        "Performance & accessibility",
+        "Offer and audience cleanup",
+        "Homepage and landing page strategy",
+        "Messaging that says the quiet part clearly",
+        "Trust signals, proof, and calls to action",
+        "Analytics and conversion foundations",
       ],
     },
     {
       number: "02",
-      verb: "Rank",
-      title: "SEO & Visibility",
-      lede: "Technical SEO, programmatic content, and AI-search optimization. We make sure the right people find you — in Google and in ChatGPT.",
+      verb: "Build",
+      title: "Websites That Produce Leads",
+      lede: "Fast, simple sites for service businesses that need fewer pretty abstractions and more qualified conversations.",
       items: [
-        "Technical SEO audits",
-        "Programmatic SEO at scale",
-        "AI / LLM search optimization",
-        "Schema & structured data",
-        "Content & keyword strategy",
+        "Marketing sites and landing pages",
+        "Service pages and local SEO structure",
+        "Forms, CRM handoff, and tracking",
+        "Performance and accessibility basics",
+        "Clear ownership after launch",
       ],
     },
     {
       number: "03",
-      verb: "Automate",
-      title: "AI & Systems",
-      lede: "From LLM-powered features to internal automations — we ship AI that does real work, not demos.",
+      verb: "Grow",
+      title: "SEO, Google Ads & Reporting",
+      lede: "Search and paid acquisition with honest reporting: what is working, what is wasting money, and what to do next.",
       items: [
-        "LLM features & agents",
-        "Workflow automation",
-        "RAG & internal tooling",
-        "Model evals & guardrails",
-        "Custom integrations",
+        "Technical SEO cleanup",
+        "Local and service-area SEO",
+        "Google Ads audits and rebuilds",
+        "Lead tracking and call/form attribution",
+        "Monthly decision reports",
+      ],
+    },
+    {
+      number: "04",
+      verb: "Automate",
+      title: "AI & Operations Systems",
+      lede: "Practical automations for the boring parts: intake, follow-up, reporting, document handling, and internal workflows.",
+      items: [
+        "Lead intake and follow-up flows",
+        "Dashboards and internal tools",
+        "AI-assisted research and content ops",
+        "Gmail, Sheets, CRM, and form integrations",
+        "Guardrails so automations do not go feral",
       ],
     },
   ];
@@ -244,8 +238,8 @@ function Services() {
       id="services"
       className="px-5 md:px-10 max-w-[1440px] mx-auto pt-28 md:pt-40"
     >
-      <SectionHeader index="II" label="What we do" lines={["THREE", "PRACTICES.", "ONE STUDIO."]} />
-      <div className="mt-14 md:mt-20 grid md:grid-cols-3 gap-px bg-ink border-2 border-ink">
+      <SectionHeader index="II" label="What we do" lines={["CLEAR", "PRACTICAL", "WORK."]} />
+      <div className="mt-14 md:mt-20 grid md:grid-cols-2 xl:grid-cols-4 gap-px bg-ink border-2 border-ink">
         {services.map((s, i) => (
           <ServiceCard key={s.number} service={s} index={i} />
         ))}
@@ -304,7 +298,7 @@ function Work() {
       id="work"
       className="px-5 md:px-10 max-w-[1440px] mx-auto pt-28 md:pt-40"
     >
-      <SectionHeader index="III" label="Recent ship" lines={["RECENT", "SHIP."]} />
+      <SectionHeader index="III" label="Proof" lines={["WHAT", "THIS MEANS."]} />
       <WorkCard />
     </section>
   );
@@ -330,7 +324,7 @@ function WorkCard() {
       >
         <img
           src="/static/work/alphamechanical.webp"
-          alt="Alpha Mechanical homepage — Fair Oaks' trusted HVAC experts"
+          alt="Service business homepage with clear offer and local proof"
           width={1600}
           height={848}
           loading="lazy"
@@ -392,15 +386,15 @@ function WorkCard() {
       {/* LEFT — project meta */}
       <article className="bg-bone p-7 md:p-10 lg:p-12 md:col-span-7 flex flex-col">
         <div className="flex items-baseline justify-between font-mono text-[11px] uppercase tracking-[0.22em] font-bold text-ink-muted">
-          <span>{"// "}01 / 01 — RECENT</span>
+          <span>{"// "}01 / 01 — EXAMPLE OUTCOME</span>
           <span aria-hidden>—</span>
         </div>
 
         <div className="mt-8 md:mt-10">
           <div className="font-display font-black uppercase tracking-ultratight leading-[0.84] text-6xl md:text-[5.5rem] lg:text-[6.5rem] text-ink">
-            <span className="block">ALPHA</span>
+            <span className="block">FROM</span>
             <span className="block">
-              MECHANICAL<span className="text-acid-deep">.</span>
+              VAGUE TO CLEAR<span className="text-acid-deep">.</span>
             </span>
           </div>
           <a
@@ -415,21 +409,20 @@ function WorkCard() {
         </div>
 
         <p className="mt-7 text-sm md:text-base leading-relaxed font-mono max-w-md text-ink">
-          <span className="text-ink-muted">[ &gt; ]</span> A new marketing site
-          engineered for both humans and agents. Custom build, technical SEO,
-          and agent-ready content architecture — shipped at{" "}
-          <span className="bg-acid px-1.5 font-bold">99 / 100 / 100 / 100</span>{" "}
-          on Google Lighthouse and a perfect{" "}
-          <span className="bg-acid px-1.5 font-bold">100 / Level 5</span>{" "}
-          on isagentready.com.
+          <span className="text-ink-muted">[ &gt; ]</span> The pattern is usually the same:
+          a business has the skills, the clients, and the proof, but the site
+          makes people work too hard to understand it. We rebuild the page around{" "}
+          <span className="bg-acid px-1.5 font-bold">the offer</span>,{" "}
+          <span className="bg-acid px-1.5 font-bold">the buyer</span>, and{" "}
+          <span className="bg-acid px-1.5 font-bold">the next step</span>.
         </p>
 
         <ul className="mt-8 pt-5 border-t-2 border-ink space-y-2.5 text-sm font-mono">
           {[
-            "Marketing site & visual identity",
-            "Technical SEO & schema",
-            "Agent-ready content architecture",
-            "Performance & accessibility",
+            "Plain-language offer and service architecture",
+            "Technical SEO and local visibility basics",
+            "Lead tracking, forms, and attribution",
+            "A site the owner can actually explain",
           ].map((item) => (
             <li key={item} className="flex items-start gap-3">
               <span
@@ -452,7 +445,7 @@ function WorkCard() {
               className="btn-acid"
             >
               <span className="w-2 h-2 bg-ink block" aria-hidden />
-              <span>Visit live site</span>
+              <span>See example site</span>
               <span aria-hidden>↗</span>
             </a>
           </Magnetic>
@@ -462,31 +455,31 @@ function WorkCard() {
       {/* RIGHT — agent-ready score card */}
       <aside className="bg-bone-soft p-7 md:p-10 lg:p-12 md:col-span-5 flex flex-col">
         <div className="flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.22em] font-bold text-ink-muted">
-          <span>Agent-Ready Score</span>
+          <span>What we check</span>
           <span className="flex items-center gap-2">
             <span
               className="w-1.5 h-1.5 bg-acid-deep block animate-pulse"
               aria-hidden
             />
-            <span className="text-ink">Verified</span>
+            <span className="text-ink">Before launch</span>
           </span>
         </div>
 
         <div className="mt-6 border-2 border-ink bg-bone p-5 md:p-6 relative">
           <div className="font-display font-black tracking-ultratight leading-[0.85] text-[10rem] md:text-[12rem] text-ink">
-            <span className="bg-acid inline-block px-3">100</span>
+            <span className="bg-acid inline-block px-3">04</span>
           </div>
           <div className="mt-5 flex items-center flex-wrap gap-2 font-mono text-[11px] uppercase tracking-[0.22em] font-bold">
-            <span className="bg-ink text-acid px-2 py-1">LEVEL 5</span>
-            <span className="text-ink">Agent-Native</span>
+            <span className="bg-ink text-acid px-2 py-1">CHECKS</span>
+            <span className="text-ink">Before traffic</span>
           </div>
         </div>
 
         <ul className="mt-8 space-y-0">
           {[
-            ["Discoverability", "100", "3 / 3"],
-            ["Content", "100", "1 / 1"],
-            ["Bot Access Control", "100", "2 / 2"],
+            ["Offer clarity", "01", "Can a stranger explain it?"],
+            ["Lead path", "02", "Can a buyer take action?"],
+            ["Tracking", "03", "Can we see what worked?"],
           ].map(([label, score, count]) => (
             <li
               key={label}
@@ -508,7 +501,7 @@ function WorkCard() {
         </ul>
 
         <div className="mt-6 font-mono text-[10px] uppercase tracking-[0.22em] text-ink-muted">
-          [ Partial scan — 6 of 17 checks enabled ]
+          [ If it cannot be measured or explained, it is not done. ]
         </div>
       </aside>
       </div>
@@ -532,12 +525,8 @@ function Manifesto() {
           §&nbsp;MANIFESTO
         </div>
         <blockquote className="md:col-span-9 font-display font-black uppercase tracking-ultratight text-4xl md:text-7xl lg:text-[5.25rem] leading-[0.95] text-ink">
-          “Good consulting{" "}
-          <span className="text-ink-muted">is a forcing function for</span> good
-          thinking
-          <span className="text-acid-deep">—</span> the deliverable is{" "}
-          <span className="bg-acid text-ink px-2">clarity</span>, the artifact
-          is what compounds.”
+          “Most marketing problems are clarity problems wearing nicer clothes.
+          We make the business easier to understand, easier to find, and easier to run.”
         </blockquote>
       </div>
     </section>
@@ -550,23 +539,23 @@ function Approach() {
   const principles = [
     {
       n: "i",
-      title: "Outcome over output",
-      body: "We measure ourselves on revenue, rankings, and usage — not deliverables. If it doesn't move the number, we don't ship it.",
+      title: "Say what you actually do",
+      body: "The site should explain the business faster than the owner can over coffee. If it needs a philosophy page to make sense, it is not done.",
     },
     {
       n: "ii",
-      title: "Beauty is not optional",
-      body: "Pixel-level craft compounds trust. Polish is part of the function, not a finishing touch we add at the end.",
+      title: "Useful beats impressive",
+      body: "Sharp design matters, but the job is not to look expensive. The job is to help the right person trust you enough to start a conversation.",
     },
     {
       n: "iii",
-      title: "Ship in weeks, not quarters",
-      body: "Small, opinionated teams move faster than agencies. Our default engagement is two to twelve weeks — and we keep it that way.",
+      title: "Fix the funnel, not the vibes",
+      body: "We care about forms, calls, rankings, cost per lead, follow-up, and whether anyone can tell what happened after launch.",
     },
     {
       n: "iv",
-      title: "Measure what compounds",
-      body: "Every project ships with the analytics, schema, and infrastructure to keep getting better long after we hand off the keys.",
+      title: "Automate after the process is real",
+      body: "AI is useful when the workflow is already understood. We do not automate confusion; we clean it up first, then make the repeatable parts faster.",
     },
   ];
   return (
@@ -574,7 +563,7 @@ function Approach() {
       id="approach"
       className="px-5 md:px-10 max-w-[1440px] mx-auto pt-28 md:pt-40"
     >
-      <SectionHeader index="IV" label="How we work" lines={["WORKING", "PRINCIPLES."]} />
+      <SectionHeader index="IV" label="How we work" lines={["NO", "FOG MACHINE."]} />
       <div className="mt-14 md:mt-20 grid md:grid-cols-2 gap-px bg-ink border-2 border-ink">
         {principles.map((p, i) => (
           <Principle key={p.n} p={p} index={i} />
@@ -620,25 +609,26 @@ function Contact() {
       id="contact"
       className="px-5 md:px-10 max-w-[1440px] mx-auto pt-28 md:pt-40"
     >
-      <SectionHeader index="V" label="Start something" lines={["HAVE A", "PROJECT?"]} />
+      <SectionHeader index="V" label="Start here" lines={["WHAT IS", "STUCK?"]} />
       <div className="mt-14 md:mt-20 grid md:grid-cols-12 gap-10 md:gap-16">
         <div className="md:col-span-5">
           <p className="text-base md:text-lg text-ink leading-relaxed font-mono max-w-md">
-            <span className="text-ink-muted">[ &gt; ]</span> Tell us about the
-            work. We&rsquo;ll reply within two business days with a take, a
-            rough scope, and what it looks like to move forward.
+            <span className="text-ink-muted">[ &gt; ]</span> Send the messy version:
+            the site that no longer explains the business, the ads that spend
+            without proof, the SEO problem, or the workflow everyone keeps doing
+            by hand.
           </p>
           <dl className="mt-10 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-muted font-bold border-t-2 border-ink">
             <ContactRow label="Email">
               <a
-                href="mailto:hello@devcatapult.com"
+                href="mailto:alex@replicant.media"
                 className="text-ink hover:text-acid-deep transition-colors lowercase tracking-normal"
               >
-                hello@devcatapult.com
+                alex@replicant.media
               </a>
             </ContactRow>
             <ContactRow label="Reply">
-              <span className="text-ink">~ 2 business days</span>
+              <span className="text-ink">Practical next step</span>
             </ContactRow>
             <ContactRow label="Engagements">
               <span className="text-ink">2 — 12 weeks</span>

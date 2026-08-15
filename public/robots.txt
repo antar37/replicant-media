@@ -1,4 +1,4 @@
-# Catapult — devcatapult.com
+# Replicant Media — replicant.media
 # https://www.rfc-editor.org/rfc/rfc9309
 # Content-Signal: https://contentsignals.org/
 
@@ -102,4 +102,4 @@ Allow: /
 Disallow: /api/
 
 # ---- Sitemap ----
-Sitemap: https://devcatapult.com/sitemap.xml
+Sitemap: https://replicant.media/sitemap.xml

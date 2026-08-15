@@ -4,83 +4,74 @@ export const config = {
   matcher: "/",
 };
 
-const HOMEPAGE_MARKDOWN = `# Catapult
+const HOMEPAGE_MARKDOWN = `# Replicant Media
 
-> Sites that rank. AI that ships.
+> Clear websites. Measurable growth. Useful automation.
 
-Catapult is an independent studio that builds **websites that convert**, **search that ranks**, and **AI that ships**. We handle the strategy, the build, and the long tail.
+Replicant Media helps owner-led service businesses turn messy online marketing into clear websites, measurable search and ads, and practical automations.
 
-- Status: Available for Q3 (2 slots left)
-- Engagements: 2–12 weeks
-- Site: https://devcatapult.com
-- Contact: see the form at https://devcatapult.com/#contact
+We are useful when the current site is too vague, the ads are spending without proof, the SEO is stuck, or the team keeps doing the same operational work by hand.
 
----
-
-## Three practices, one studio
-
-### 01 — Build · Websites & Web Apps
-
-Custom marketing sites, product surfaces, and internal tools — designed for trust, speed, and conversion.
-
-- Marketing sites
-- Product UI & dashboards
-- Headless CMS & content infrastructure
-- Conversion-led design
-- Performance & accessibility
-
-### 02 — Rank · SEO & Visibility
-
-Technical SEO, programmatic content, and AI-search optimization. We make sure the right people find you — in Google and in ChatGPT.
-
-- Technical SEO audits
-- Programmatic SEO at scale
-- AI / LLM search optimization
-- Schema & structured data
-- Content & keyword strategy
-
-### 03 — Automate · AI & Systems
-
-From LLM-powered features to internal automations — we ship AI that does real work, not demos.
-
-- LLM features & agents
-- Workflow automation
-- RAG & internal tooling
-- Model evals & guardrails
-- Custom integrations
+- Site: https://replicant.media
+- Contact: https://replicant.media/#contact
+- Typical build cycles: 2-12 weeks
 
 ---
 
-## Recent ship
+## What we do
 
-**Alpha Mechanical** — https://www.alphamechanicals.com
+### 01 - Clarify: positioning and website strategy
 
-A new marketing site engineered for both humans and agents. Custom build, technical SEO, and agent-ready content architecture — shipped to a perfect 100 / Level 5 on isagentready.com.
+We pin down what you sell, who it is for, and why a buyer should trust you before touching the layout.
 
-Scope:
+- Offer and audience cleanup
+- Homepage and landing page strategy
+- Trust signals, proof, and calls to action
+- Analytics and conversion foundations
 
-- Marketing site & visual identity
-- Technical SEO & schema
-- Agent-ready content architecture
-- Performance & accessibility
+### 02 - Build: websites that produce leads
 
-Agent-Ready Score: 100 (Level 5 — Agent-Native). Discoverability 100 (3/3), Content 100 (1/1), Bot Access Control 100 (2/2).
+Fast, simple sites for service businesses that need fewer pretty abstractions and more qualified conversations.
+
+- Marketing sites and landing pages
+- Service pages and local SEO structure
+- Forms, CRM handoff, and tracking
+- Performance and accessibility basics
+
+### 03 - Grow: SEO, Google Ads, and reporting
+
+Search and paid acquisition with honest reporting: what is working, what is wasting money, and what to do next.
+
+- Technical SEO cleanup
+- Local and service-area SEO
+- Google Ads audits and rebuilds
+- Lead tracking and call/form attribution
+- Monthly decision reports
+
+### 04 - Automate: AI and operations systems
+
+Practical automations for the boring parts: intake, follow-up, reporting, document handling, and internal workflows.
+
+- Lead intake and follow-up flows
+- Dashboards and internal tools
+- AI-assisted research and content ops
+- Gmail, Sheets, CRM, and form integrations
 
 ---
 
-## Contact
+## How we work
 
-Start a project: https://devcatapult.com/#contact
+Most marketing problems are clarity problems wearing nicer clothes. We make the business easier to understand, easier to find, and easier to run.
 
-The form on the homepage takes a name, email, project type (Website / SEO / AI / Multiple), and project details. Submissions route to the studio directly.
+We do not sell a bloated discovery phase. Send the messy version and we will reply with a practical next step.
 
 ---
 
 ## Machine-readable surfaces
 
-- robots.txt: https://devcatapult.com/robots.txt
-- sitemap.xml: https://devcatapult.com/sitemap.xml
-- This page in markdown: \`curl -H "Accept: text/markdown" https://devcatapult.com/\`
+- robots.txt: https://replicant.media/robots.txt
+- sitemap.xml: https://replicant.media/sitemap.xml
+- Markdown homepage: \`curl -H "Accept: text/markdown" https://replicant.media/\`
 `;
 
 const APPROX_TOKENS = Math.ceil(HOMEPAGE_MARKDOWN.length / 4);
@@ -124,7 +115,7 @@ export default function middleware(request) {
       "Cache-Control": "public, max-age=300, must-revalidate",
       "Vary": "Accept",
       "X-Markdown-Tokens": String(APPROX_TOKENS),
-      "Link": '<https://devcatapult.com/>; rel="canonical"',
+      "Link": '<https://replicant.media/>; rel="canonical"',
     },
   });
 }

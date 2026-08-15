@@ -31,10 +31,10 @@ const markup = html(`
   <div style="display:flex;justify-content:space-between;align-items:center;font-size:18px;letter-spacing:4px;text-transform:uppercase;font-weight:700;font-family:'Space Mono';">
     <div style="display:flex;align-items:center;gap:14px;">
       <div style="width:14px;height:14px;background:${ACID};display:flex;"></div>
-      <span>EST. 2026 / INDEPENDENT STUDIO</span>
+      <span>REPLICANT MEDIA / WEBSITES + GROWTH SYSTEMS</span>
     </div>
     <span style="font-family:'Big Shoulders Display';font-weight:900;font-size:42px;letter-spacing:-2px;text-transform:uppercase;">
-      CATAPULT<span style="color:${ACID_DEEP};">*</span>
+      REPLICANT<span style="color:${ACID_DEEP};">*</span>
     </span>
   </div>
 
@@ -43,25 +43,25 @@ const markup = html(`
 
   <!-- HEADLINE -->
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center;font-family:'Big Shoulders Display';font-weight:900;font-size:138px;letter-spacing:-7px;line-height:1.0;text-transform:uppercase;color:${INK};">
-    <div style="display:flex;">SITES THAT</div>
+    <div style="display:flex;">MAKE THE</div>
     <div style="display:flex;align-items:center;gap:16px;">
-      <span style="background:${INK};color:${ACID};padding:0 20px;display:flex;line-height:1;">RANK.</span>
-      <span style="display:flex;">AI</span>
+      <span style="background:${INK};color:${ACID};padding:0 20px;display:flex;line-height:1;">WEB</span>
+      <span style="display:flex;">WORK</span>
     </div>
-    <div style="display:flex;">THAT SHIPS.</div>
+    <div style="display:flex;">MAKE SENSE.</div>
   </div>
 
   <!-- FOOTER -->
   <div style="display:flex;justify-content:space-between;align-items:center;font-size:18px;letter-spacing:4px;text-transform:uppercase;font-weight:700;padding-top:22px;border-top:2px solid ${INK};font-family:'Space Mono';">
     <span style="display:flex;align-items:center;gap:14px;">
-      <span>devcatapult.com</span>
+      <span>replicant.media</span>
     </span>
     <span style="display:flex;align-items:center;gap:18px;">
       <span style="display:flex;">WEBSITES</span>
       <span style="color:${ACID_DEEP};display:flex;">/</span>
       <span style="display:flex;">SEO</span>
       <span style="color:${ACID_DEEP};display:flex;">/</span>
-      <span style="display:flex;">AI</span>
+      <span style="display:flex;">AUTOMATION</span>
     </span>
   </div>
 </div>
