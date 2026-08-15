@@ -6,21 +6,19 @@ module.exports = {
     extend: {
       colors: {
         bone: {
-          DEFAULT: "#EAE6D8",
-          soft: "#E0DBC9",
-          deep: "#D4CDB6",
+          DEFAULT: "#030806",
+          soft: "#08130D",
+          deep: "#102318",
         },
         ink: {
-          DEFAULT: "#080808",
-          soft: "#1A1A1A",
-          muted: "#444444",
-          /* Was #7A7368 — failed WCAG AA contrast on bone (3.62:1).
-             #5A5247 lands at ~6.2:1 which clears 4.5:1 for normal text. */
-          faint: "#5A5247",
+          DEFAULT: "#B7FFD0",
+          soft: "#82E6A8",
+          muted: "#5F9F78",
+          faint: "#31523E",
         },
         acid: {
-          DEFAULT: "#CCFF02",
-          deep: "#A6CC02",
+          DEFAULT: "#FFC766",
+          deep: "#78F0A0",
         },
       },
       fontFamily: {

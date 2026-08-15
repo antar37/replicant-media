@@ -19,10 +19,10 @@ const spaceMonoRegular = readFileSync(
   resolve(fontDir, "SpaceMono-Regular.woff")
 );
 
-const BONE = "#EAE6D8";
-const INK = "#080808";
-const ACID = "#CCFF02";
-const ACID_DEEP = "#A6CC02";
+const BONE = "#030806";
+const INK = "#B7FFD0";
+const ACID = "#FFC766";
+const ACID_DEEP = "#78F0A0";
 
 const markup = html(`
 <div style="width:1200px;height:630px;background:${BONE};color:${INK};display:flex;flex-direction:column;padding:48px 64px;font-family:'Space Mono';position:relative;">
@@ -45,7 +45,7 @@ const markup = html(`
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center;font-family:'Big Shoulders Display';font-weight:900;font-size:138px;letter-spacing:-7px;line-height:1.0;text-transform:uppercase;color:${INK};">
     <div style="display:flex;">MAKE THE</div>
     <div style="display:flex;align-items:center;gap:16px;">
-      <span style="background:${INK};color:${ACID};padding:0 20px;display:flex;line-height:1;">WEB</span>
+      <span style="background:${ACID};color:${BONE};padding:0 20px;display:flex;line-height:1;">WEB</span>
       <span style="display:flex;">WORK</span>
     </div>
     <div style="display:flex;">MAKE SENSE.</div>

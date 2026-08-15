@@ -74,7 +74,7 @@ function Hero() {
           MAKE THE
         </span>
         <span className="block text-[18vw] md:text-[14vw] lg:text-[12.5rem]">
-          <span data-game-platform className="bg-ink text-acid px-3 md:px-5 inline-block">
+          <span data-game-platform className="text-acid">
             WEB
           </span>{" "}
           <span data-game-platform>WORK</span>
@@ -91,9 +91,9 @@ function Hero() {
           style={{ animationDelay: "0.95s" }}
         >
           <span className="text-ink-muted">[ &gt; ]</span> Replicant Media helps owner-led service businesses turn messy online marketing into{" "}
-          <span className="bg-acid px-1.5 font-bold">clear websites</span>,{" "}
-          <span className="bg-acid px-1.5 font-bold">measurable search and ads</span>,
-          and <span className="bg-acid px-1.5 font-bold">useful automations</span>.
+          <span className="text-acid font-bold">clear websites</span>,{" "}
+          <span className="text-acid font-bold">measurable search and ads</span>,
+          and <span className="text-acid font-bold">useful automations</span>.
           No vague digital transformation pitch. Just the work that gets leads and saves time.
         </p>
       </div>
@@ -117,7 +117,7 @@ function Hero() {
       </div>
 
       {/* Bottom strip with stats */}
-      <div className="mt-20 md:mt-28 grid grid-cols-2 md:grid-cols-4 gap-px bg-ink border-2 border-ink pointer-events-none">
+      <div className="mt-20 md:mt-28 grid grid-cols-2 md:grid-cols-4 gap-px bg-ink/25 border-2 border-ink pointer-events-none">
         {[
           ["04", "Core services"],
           ["01", "Owner operator"],
@@ -157,7 +157,7 @@ function Marquee() {
   ];
   const doubled = [...items, ...items];
   return (
-    <div className="relative block w-full bg-acid border-y-2 border-ink overflow-hidden text-left">
+    <div className="relative block w-full bg-bone-deep border-y-2 border-ink overflow-hidden text-left shadow-[0_0_24px_rgba(120,240,160,0.08)]">
       <div className="marquee-track animate-marquee py-4 md:py-5 text-ink">
         {doubled.map((item, i) => (
           <span
@@ -239,7 +239,7 @@ function Services() {
       className="px-5 md:px-10 max-w-[1440px] mx-auto pt-28 md:pt-40"
     >
       <SectionHeader index="II" label="What we do" lines={["CLEAR", "PRACTICAL", "WORK."]} />
-      <div className="mt-14 md:mt-20 grid md:grid-cols-2 xl:grid-cols-4 gap-px bg-ink border-2 border-ink">
+      <div className="mt-14 md:mt-20 grid md:grid-cols-2 xl:grid-cols-4 gap-px bg-ink/25 border-2 border-ink">
         {services.map((s, i) => (
           <ServiceCard key={s.number} service={s} index={i} />
         ))}
@@ -265,7 +265,7 @@ function ServiceCard({ service, index }) {
         <span aria-hidden>—</span>
       </div>
       <div className="mt-10 md:mt-14">
-        <div className="font-display font-black tracking-ultratight leading-[0.82] text-7xl md:text-[6rem] uppercase">
+        <div className="font-display font-black tracking-ultratight leading-[0.84] text-6xl sm:text-7xl md:text-[5.4rem] xl:text-[4.65rem] 2xl:text-[5.5rem] uppercase break-words">
           {service.verb}
           <span className="flip-accent text-acid-deep">.</span>
         </div>
@@ -312,38 +312,46 @@ function WorkCard() {
       data-game-platform
       className={`reveal-up ${
         visible ? "is-visible" : ""
-      } mt-14 md:mt-20 border-2 border-ink bg-ink`}
+      } mt-14 md:mt-20 border-2 border-ink bg-ink/25`}
     >
-      {/* TOP — full-width thumbnail */}
+      {/* TOP — CRT-style proof screen */}
       <a
         href="https://www.alphamechanicals.com"
         target="_blank"
         rel="noopener noreferrer"
-        className="group relative block bg-ink overflow-hidden border-b-2 border-ink"
+        className="group relative block bg-bone overflow-hidden border-b-2 border-ink p-5 md:p-8"
         aria-label="Visit Alpha Mechanical (opens in a new tab)"
       >
-        <img
-          src="/static/work/alphamechanical.webp"
-          alt="Service business homepage with clear offer and local proof"
-          width={1600}
-          height={848}
-          loading="lazy"
-          decoding="async"
-          className="block w-full h-auto transition-transform duration-700 ease-out group-hover:scale-[1.015]"
-        />
-        <div className="absolute inset-0 flex items-center justify-center bg-acid/0 group-hover:bg-acid/15 transition-colors duration-300 pointer-events-none">
-          <span className="opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 inline-flex items-center gap-3 px-5 py-3 bg-acid text-ink border-2 border-ink font-mono text-[11px] font-bold uppercase tracking-[0.22em]">
-            <span className="w-2 h-2 bg-ink block" aria-hidden />
+        <div className="border-2 border-ink bg-[#010403] p-5 md:p-8 min-h-[340px] md:min-h-[520px] shadow-[inset_0_0_44px_rgba(120,240,160,0.12),0_0_28px_rgba(120,240,160,0.08)]">
+          <div className="flex items-center justify-between gap-3 font-mono text-[10px] md:text-[11px] uppercase tracking-[0.22em] font-bold text-ink-muted">
+            <span className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 bg-acid block animate-pulse" aria-hidden />
+              <span>replicant/proof/alpha-mechanical</span>
+            </span>
+            <span className="hidden sm:inline text-ink-muted">{"// "}LIVE SYSTEM</span>
+          </div>
+          <div className="mt-10 md:mt-16 font-display font-black uppercase tracking-ultratight leading-[0.82] text-[17vw] md:text-[8.5rem] lg:text-[11rem] text-ink">
+            <span className="block">CLEAR</span>
+            <span className="block text-acid">OFFER</span>
+            <span className="block">FAST SITE</span>
+          </div>
+          <div className="mt-8 grid md:grid-cols-3 gap-px bg-ink/25 border-2 border-ink font-mono text-[11px] uppercase tracking-[0.18em] font-bold">
+            {[
+              ["01", "Service pages"],
+              ["02", "Tracking"],
+              ["03", "Local proof"],
+            ].map(([n, label]) => (
+              <div key={label} className="bg-bone p-4">
+                <div className="text-3xl font-display font-black leading-none">{n}</div>
+                <div className="mt-2 text-ink-muted">{label}</div>
+              </div>
+            ))}
+          </div>
+          <span className="mt-8 inline-flex items-center gap-3 px-4 py-3 bg-acid text-bone border-2 border-acid font-mono text-[11px] font-bold uppercase tracking-[0.22em] group-hover:shadow-[0_0_22px_rgba(255,199,102,0.26)] transition-shadow">
+            <span className="w-2 h-2 bg-bone block" aria-hidden />
             View live site
             <span aria-hidden>↗</span>
           </span>
-        </div>
-        <div className="absolute top-0 left-0 right-0 flex items-center justify-between gap-3 px-4 md:px-5 py-2.5 bg-ink/85 backdrop-blur-sm font-mono text-[10px] md:text-[11px] uppercase tracking-[0.22em] font-bold text-bone">
-          <span className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 bg-acid block animate-pulse" aria-hidden />
-            <span>alphamechanicals.com</span>
-          </span>
-          <span className="hidden sm:inline text-bone/60">{"// "}LIVE</span>
         </div>
       </a>
 
@@ -382,7 +390,7 @@ function WorkCard() {
         </div>
       </div>
 
-      <div className="grid md:grid-cols-12 gap-px bg-ink border-t-2 border-ink">
+      <div className="grid md:grid-cols-12 gap-px bg-ink/25 border-t-2 border-ink">
       {/* LEFT — project meta */}
       <article className="bg-bone p-7 md:p-10 lg:p-12 md:col-span-7 flex flex-col">
         <div className="flex items-baseline justify-between font-mono text-[11px] uppercase tracking-[0.22em] font-bold text-ink-muted">
@@ -412,9 +420,9 @@ function WorkCard() {
           <span className="text-ink-muted">[ &gt; ]</span> The pattern is usually the same:
           a business has the skills, the clients, and the proof, but the site
           makes people work too hard to understand it. We rebuild the page around{" "}
-          <span className="bg-acid px-1.5 font-bold">the offer</span>,{" "}
-          <span className="bg-acid px-1.5 font-bold">the buyer</span>, and{" "}
-          <span className="bg-acid px-1.5 font-bold">the next step</span>.
+          <span className="text-acid font-bold">the offer</span>,{" "}
+          <span className="text-acid font-bold">the buyer</span>, and{" "}
+          <span className="text-acid font-bold">the next step</span>.
         </p>
 
         <ul className="mt-8 pt-5 border-t-2 border-ink space-y-2.5 text-sm font-mono">
@@ -564,7 +572,7 @@ function Approach() {
       className="px-5 md:px-10 max-w-[1440px] mx-auto pt-28 md:pt-40"
     >
       <SectionHeader index="IV" label="How we work" lines={["NO", "FOG MACHINE."]} />
-      <div className="mt-14 md:mt-20 grid md:grid-cols-2 gap-px bg-ink border-2 border-ink">
+      <div className="mt-14 md:mt-20 grid md:grid-cols-2 gap-px bg-ink/25 border-2 border-ink">
         {principles.map((p, i) => (
           <Principle key={p.n} p={p} index={i} />
         ))}
