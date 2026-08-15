@@ -1,156 +1,170 @@
-import { useRef, useState } from "react";
-import ErrorMessage from "./ErrorMessage";
-import LoadingSpinner from "./LoadingSpinner";
-import SuccessMessage from "./SuccessMessage";
+const SERVICES = [
+  "Website",
+  "SEO",
+  "Google Ads",
+  "Reporting",
+  "Automation",
+  "Not sure yet",
+];
 
-const TYPES = [
-  { id: "Website", label: "Website" },
-  { id: "SEO", label: "SEO" },
-  { id: "Ads", label: "Ads" },
-  { id: "Automation", label: "Automation" },
+const BUDGETS = [
+  "Under $2k",
+  "$2k–$5k",
+  "$5k–$12k",
+  "$12k+",
+  "Not sure yet",
+];
+
+const TIMELINES = [
+  "ASAP",
+  "This month",
+  "Next 1–3 months",
+  "Flexible",
 ];
 
 export default function Subscribe() {
-  const emailEl = useRef(null);
-  const companyEl = useRef(null);
-  const detailsEl = useRef(null);
-  const [type, setType] = useState("Website");
-  const [form, setForm] = useState({ state: "Initial" });
-
-  const loading = form.state === "Loading";
-
-  const submit = async (e) => {
-    e.preventDefault();
-    setForm({ state: "Loading" });
-    try {
-      const res = await fetch("/api/subscribe", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: emailEl.current.value,
-          company: companyEl.current.value,
-          type,
-          company_url: detailsEl.current.value,
-        }),
-      });
-      const data = await res.json();
-      if (!res.ok || data.error) {
-        setForm({
-          state: "Error",
-          message:
-            (data && data.error && (data.error.message || data.error)) ||
-            "Something went wrong. Please try again.",
-        });
-        return;
-      }
-      emailEl.current.value = "";
-      companyEl.current.value = "";
-      detailsEl.current.value = "";
-      setForm({
-        state: "Success",
-        message: "Got it. We'll reply with a practical next step.",
-      });
-    } catch (err) {
-      setForm({
-        state: "Error",
-        message: "Network error. Please try again.",
-      });
-    }
-  };
-
   return (
-    <form onSubmit={submit} className="flex flex-col gap-6">
-      <div className="flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.22em] text-ink-muted font-bold">
-        <span>{"// "}project_brief.txt</span>
-        <span className="flex items-center gap-2">
+    <form action="/api/contact" method="post" className="flex flex-col gap-7">
+      <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between font-mono text-[11px] uppercase tracking-[0.22em] text-ink-muted font-bold">
+        <span>{"// "}replicant_intake.jotform</span>
+        <span className="inline-flex items-center gap-2">
           <span className="w-1.5 h-1.5 bg-acid-deep block animate-pulse" aria-hidden />
-          Open
+          Jotform handoff
         </span>
       </div>
       <span className="rule" />
 
-      <Field label="Email" required>
-        <input
-          ref={emailEl}
-          type="email"
-          autoComplete="email"
-          required
-          placeholder="you@company.com"
-          className="field"
-          disabled={loading}
-        />
-      </Field>
-
-      <Field label="Company">
-        <input
-          ref={companyEl}
-          type="text"
-          autoComplete="organization"
-          placeholder="Business or website"
-          className="field"
-          disabled={loading}
-        />
-      </Field>
-
-      <div>
-        <Label>What needs fixing?</Label>
-        <div className="mt-3 grid grid-cols-2 md:grid-cols-4 gap-2">
-          {TYPES.map((t) => (
-            <button
-              key={t.id}
-              type="button"
-              onClick={() => setType(t.id)}
-              disabled={loading}
-              data-active={type === t.id}
-              className="chip"
-              aria-pressed={type === t.id}
-            >
-              {t.label}
-            </button>
-          ))}
-        </div>
+      <div className="border-2 border-ink bg-bone-soft p-4 font-mono text-xs leading-relaxed text-ink">
+        <span className="text-acid font-bold uppercase tracking-[0.18em]">Send the messy version.</span>{" "}
+        This goes to Replicant Media through Jotform so the brief is stored, searchable, and easy to follow up.
       </div>
 
-      <Field label="Project details">
+      <input type="text" name="websiteTrap" className="hidden" tabIndex="-1" autoComplete="off" />
+
+      <div className="grid md:grid-cols-2 gap-5">
+        <Field label="Name" required>
+          <input
+            type="text"
+            name="name"
+            autoComplete="name"
+            required
+            placeholder="Your name"
+            className="field"
+          />
+        </Field>
+
+        <Field label="Email" required>
+          <input
+            type="email"
+            name="email"
+            autoComplete="email"
+            required
+            placeholder="you@company.com"
+            className="field"
+          />
+        </Field>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-5">
+        <Field label="Company">
+          <input
+            type="text"
+            name="company"
+            autoComplete="organization"
+            placeholder="Business name"
+            className="field"
+          />
+        </Field>
+
+        <Field label="Website / URL">
+          <input
+            type="url"
+            name="url"
+            autoComplete="url"
+            placeholder="https://example.com"
+            className="field"
+          />
+        </Field>
+      </div>
+
+      <fieldset className="space-y-3">
+        <Legend>What needs fixing?</Legend>
+        <Label>What needs fixing?</Label>
+        <div className="mt-3 grid grid-cols-2 md:grid-cols-3 gap-2">
+          {SERVICES.map((service) => (
+            <CheckChip key={service} name="services" value={service}>
+              {service}
+            </CheckChip>
+          ))}
+        </div>
+      </fieldset>
+
+      <div className="grid md:grid-cols-2 gap-5">
+        <Field label="Budget range">
+          <select name="budget" className="field" defaultValue="">
+            <option value="">Select one</option>
+            {BUDGETS.map((budget) => (
+              <option key={budget} value={budget}>
+                {budget}
+              </option>
+            ))}
+          </select>
+        </Field>
+
+        <Field label="Timeline">
+          <select name="timeline" className="field" defaultValue="">
+            <option value="">Select one</option>
+            {TIMELINES.map((timeline) => (
+              <option key={timeline} value={timeline}>
+                {timeline}
+              </option>
+            ))}
+          </select>
+        </Field>
+      </div>
+
+      <Field label="What is stuck?" required>
         <textarea
-          ref={detailsEl}
-          rows={4}
-          placeholder="What is not working yet? Leads, search, ads, operations, website clarity, or something else."
+          rows={6}
+          name="projectBrief"
+          required
+          placeholder="Tell me what is not working: the site, leads, ads, SEO, reporting, follow-up, or the workflow everyone keeps doing by hand."
           className="field"
-          disabled={loading}
         />
       </Field>
 
-      <div className="pt-4 flex flex-col-reverse md:flex-row md:items-center md:justify-between gap-4">
+      <Field label="Best next step">
+        <textarea
+          rows={3}
+          name="bestNextStep"
+          placeholder="Optional: what would make this useful — audit, rebuild, landing page, tracking fix, automation, etc."
+          className="field"
+        />
+      </Field>
+
+      <div className="pt-2 flex flex-col-reverse md:flex-row md:items-center md:justify-between gap-4">
         <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-muted font-bold">
-          {"// "}No bloated proposal deck
+          // stored in jotform
         </p>
-        <button
-          type="submit"
-          disabled={loading}
-          className="btn-acid disabled:opacity-50 disabled:hover:transform-none disabled:hover:shadow-none"
-        >
-          {loading ? (
-            <>
-              <LoadingSpinner />
-              <span>Sending</span>
-            </>
-          ) : (
-            <>
-              <span className="w-2 h-2 bg-ink block" aria-hidden />
-              <span>Send brief</span>
-              <span aria-hidden>→</span>
-            </>
-          )}
+        <button type="submit" className="btn-acid">
+          <span className="w-2 h-2 bg-ink block" aria-hidden />
+          <span>Send brief</span>
+          <span aria-hidden>→</span>
         </button>
       </div>
 
-      <div className="min-h-[1.5rem]" aria-live="polite">
-        {form.state === "Error" && <ErrorMessage>{form.message}</ErrorMessage>}
-        {form.state === "Success" && (
-          <SuccessMessage>{form.message}</SuccessMessage>
-        )}
-      </div>
+      <p className="font-mono text-[11px] uppercase tracking-[0.16em] leading-relaxed text-ink-muted">
+        Prefer the hosted version?{" "}
+        <a
+          href="/api/contact/form"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-ink hover:text-acid-deep transition-colors"
+        >
+          Open it on Jotform
+        </a>
+        .
+      </p>
     </form>
   );
 }
@@ -163,6 +177,10 @@ function Label({ children }) {
   );
 }
 
+function Legend({ children }) {
+  return <legend className="sr-only">{children}</legend>;
+}
+
 function Field({ label, required, children }) {
   return (
     <label className="flex flex-col gap-2.5">
@@ -171,6 +189,15 @@ function Field({ label, required, children }) {
         {required && <span className="text-acid-deep">&nbsp;*</span>}
       </Label>
       {children}
+    </label>
+  );
+}
+
+function CheckChip({ name, value, children }) {
+  return (
+    <label className="chip cursor-pointer has-[:checked]:bg-acid has-[:checked]:text-bone has-[:checked]:border-acid">
+      <input type="checkbox" name={name} value={value} className="sr-only" />
+      <span>{children}</span>
     </label>
   );
 }
