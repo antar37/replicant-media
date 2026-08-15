@@ -57,6 +57,7 @@ export default function Document() {
         {/* Fonts are self-hosted via next/font in _app.js — no render-blocking
             Google Fonts request needed. */}
         <link href="/static/favicons/favicon.ico" rel="shortcut icon" />
+        <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
         <link href="/static/favicons/site.webmanifest" rel="manifest" />
         <link
           href="/static/favicons/apple-touch-icon.png"
@@ -76,7 +77,7 @@ export default function Document() {
           type="image/png"
         />
         <link
-          color="#CCFF02"
+          color="#7CFF9B"
           href="/static/favicons/safari-pinned-tab.svg"
           rel="mask-icon"
         />

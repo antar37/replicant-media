@@ -70,12 +70,22 @@ function SiteHeader() {
       <div className="max-w-[1440px] mx-auto px-5 md:px-10 h-14 md:h-16 flex items-center justify-between">
         <a
           href="#top"
-          className="font-display font-black text-2xl md:text-[28px] tracking-ultratight leading-none uppercase text-ink"
+          className="group inline-flex items-center gap-3 text-ink"
+          aria-label="Replicant Media home"
         >
-          Replicant
-          <span className="text-ink-muted">/</span>
-          <span className="text-ink-muted text-sm align-top tracking-wider">
-            MEDIA
+          <img
+            src="/static/logo.svg"
+            alt=""
+            width="34"
+            height="34"
+            className="h-8 w-8 md:h-9 md:w-9 rounded-[10px] border border-ink/25 bg-black shadow-[0_0_16px_rgba(124,255,155,0.14)] transition-transform group-hover:scale-105"
+          />
+          <span className="font-display font-black text-2xl md:text-[28px] tracking-ultratight leading-none uppercase">
+            Replicant
+            <span className="text-ink-muted">/</span>
+            <span className="text-ink-muted text-sm align-top tracking-wider">
+              MEDIA
+            </span>
           </span>
         </a>
         <nav className="flex items-center gap-2 md:gap-3">
@@ -116,9 +126,18 @@ function SiteFooter() {
       <div className="max-w-[1440px] mx-auto px-5 md:px-10 py-12 md:py-16">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10">
           <div>
-            <div className="font-display font-black text-5xl md:text-7xl tracking-ultratight leading-none uppercase text-ink">
-              Replicant Media
-              <span className="text-acid-deep">*</span>
+            <div className="flex items-center gap-4">
+              <img
+                src="/static/logo.svg"
+                alt=""
+                width="64"
+                height="64"
+                className="h-14 w-14 md:h-16 md:w-16 rounded-[18px] border border-ink/25 bg-black shadow-[0_0_24px_rgba(124,255,155,0.12)]"
+              />
+              <div className="font-display font-black text-5xl md:text-7xl tracking-ultratight leading-none uppercase text-ink">
+                Replicant Media
+                <span className="text-acid-deep">*</span>
+              </div>
             </div>
             <div className="mt-3 font-mono text-[11px] uppercase tracking-[0.22em] text-ink-muted">
               [ Websites, SEO, ads &amp; automations for service businesses ]
