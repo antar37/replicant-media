@@ -147,7 +147,7 @@ export default function Subscribe() {
           // stored in jotform
         </p>
         <button type="submit" className="btn-acid">
-          <span className="w-2 h-2 bg-ink block" aria-hidden />
+          <span className="w-2 h-2 bg-bone block" aria-hidden />
           <span>Send brief</span>
           <span aria-hidden>→</span>
         </button>

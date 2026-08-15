@@ -319,7 +319,7 @@ select.field option {
   gap: 0.75rem;
   padding: 1rem 1.75rem;
   background: var(--acid);
-  color: var(--ink);
+  color: #030303;
   border: 2px solid var(--ink);
   font-family: "Space Mono", monospace;
   font-size: 12px;
