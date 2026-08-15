@@ -1,0 +1,26 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "replicant-media",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-08-15",
+  "compatibility_flags": ["nodejs_compat"],
+  "account_id": "1e56ea5182f4375232adc6a62a3b7571",
+  "assets": {
+    "directory": "out",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application"
+  },
+  "observability": {
+    "enabled": true
+  },
+  "routes": [
+    {
+      "pattern": "replicant.media/*",
+      "zone_name": "replicant.media"
+    },
+    {
+      "pattern": "www.replicant.media/*",
+      "zone_name": "replicant.media"
+    }
+  ]
+}

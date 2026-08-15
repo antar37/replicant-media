@@ -19,10 +19,10 @@ const spaceMonoRegular = readFileSync(
   resolve(fontDir, "SpaceMono-Regular.woff")
 );
 
-const BONE = "#030806";
-const INK = "#B7FFD0";
-const ACID = "#FFC766";
-const ACID_DEEP = "#78F0A0";
+const BONE = "#030303";
+const INK = "#F2F2E8";
+const ACID = "#7CFF9B";
+const ACID_DEEP = "#37D46B";
 
 const markup = html(`
 <div style="width:1200px;height:630px;background:${BONE};color:${INK};display:flex;flex-direction:column;padding:48px 64px;font-family:'Space Mono';position:relative;">

@@ -6,19 +6,19 @@ module.exports = {
     extend: {
       colors: {
         bone: {
-          DEFAULT: "#030806",
-          soft: "#08130D",
-          deep: "#102318",
+          DEFAULT: "#030303",
+          soft: "#0B0D0C",
+          deep: "#121715",
         },
         ink: {
-          DEFAULT: "#B7FFD0",
-          soft: "#82E6A8",
-          muted: "#5F9F78",
-          faint: "#31523E",
+          DEFAULT: "#F2F2E8",
+          soft: "#C9D0C8",
+          muted: "#8A928C",
+          faint: "#565E58",
         },
         acid: {
-          DEFAULT: "#FFC766",
-          deep: "#78F0A0",
+          DEFAULT: "#7CFF9B",
+          deep: "#37D46B",
         },
       },
       fontFamily: {
