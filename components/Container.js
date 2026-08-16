@@ -9,12 +9,22 @@ export default function Container(props) {
   const meta = {
     title: "Replicant Media — websites, SEO, ads, and automations",
     description:
-      "Replicant Media builds clear websites, SEO systems, paid acquisition, and practical automations for owner-led service businesses.",
+      "Replicant Media builds clear websites, SEO systems, paid acquisition, reporting, and practical automations for owner-led service businesses.",
     image: "https://replicant.media/static/og.png",
     type: "website",
+    keywords: [
+      "Replicant Media",
+      "websites for service businesses",
+      "SEO for service businesses",
+      "Google Ads audits",
+      "marketing reporting",
+      "business automation",
+    ],
+    structuredData: [],
     ...customMeta,
   };
-  const url = `https://replicant.media${router.asPath}`;
+  const cleanPath = meta.path || router.asPath.split("?")[0].split("#")[0] || "/";
+  const url = `https://replicant.media${cleanPath === "/" ? "/" : cleanPath}`;
 
   return (
     <>
@@ -22,6 +32,7 @@ export default function Container(props) {
         <title>{meta.title}</title>
         <meta name="robots" content="follow, index" />
         <meta name="description" content={meta.description} />
+        <meta name="keywords" content={meta.keywords.join(", ")} />
         <link rel="canonical" href={url} />
         <meta property="og:url" content={url} />
         <meta property="og:type" content={meta.type} />
@@ -38,6 +49,13 @@ export default function Container(props) {
         <meta name="twitter:description" content={meta.description} />
         <meta name="twitter:image" content={meta.image} />
         <meta name="twitter:image:alt" content="Replicant Media — websites, SEO, ads, and automations." />
+        {meta.structuredData.map((schema, index) => (
+          <script
+            key={`structured-data-${index}`}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+          />
+        ))}
       </Head>
       <a href="#main" className="skip-nav">
         Skip to content
@@ -69,7 +87,7 @@ function SiteHeader() {
     >
       <div className="max-w-[1440px] mx-auto px-5 md:px-10 h-14 md:h-16 flex items-center justify-between">
         <a
-          href="#top"
+          href="/"
           className="group inline-flex items-center gap-3 text-ink"
           aria-label="Replicant Media home"
         >
@@ -90,25 +108,25 @@ function SiteHeader() {
         </a>
         <nav className="flex items-center gap-2 md:gap-3">
           <a
-            href="#services"
+            href="/seo"
             className="hidden sm:inline-flex items-center px-3 py-3 min-h-[44px] font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-ink hover:bg-ink hover:text-bone transition-colors"
           >
-            Services
+            SEO
           </a>
           <a
-            href="#work"
+            href="/websites"
             className="hidden md:inline-flex items-center px-3 py-3 min-h-[44px] font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-ink hover:bg-ink hover:text-bone transition-colors"
           >
-            Work
+            Websites
           </a>
           <a
-            href="#approach"
+            href="/#systems"
             className="hidden md:inline-flex items-center px-3 py-3 min-h-[44px] font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-ink hover:bg-ink hover:text-bone transition-colors"
           >
-            Approach
+            Systems
           </a>
           <a
-            href="#contact"
+            href="/starthere"
             className="btn-ink"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-acid animate-pulse" aria-hidden />
@@ -148,17 +166,27 @@ function SiteFooter() {
               <div className="text-ink-faint">Practices</div>
               <ul className="mt-2 text-ink font-bold">
                 <li>
-                  <a href="#services" className="inline-flex items-center min-h-[44px] hover:text-acid-deep transition-colors">
+                  <a href="/websites" className="inline-flex items-center min-h-[44px] hover:text-acid-deep transition-colors">
                     → Websites
                   </a>
                 </li>
                 <li>
-                  <a href="#services" className="inline-flex items-center min-h-[44px] hover:text-acid-deep transition-colors">
+                  <a href="/seo" className="inline-flex items-center min-h-[44px] hover:text-acid-deep transition-colors">
                     → SEO
                   </a>
                 </li>
                 <li>
-                  <a href="#services" className="inline-flex items-center min-h-[44px] hover:text-acid-deep transition-colors">
+                  <a href="/google-ads" className="inline-flex items-center min-h-[44px] hover:text-acid-deep transition-colors">
+                    → Google Ads
+                  </a>
+                </li>
+                <li>
+                  <a href="/reporting" className="inline-flex items-center min-h-[44px] hover:text-acid-deep transition-colors">
+                    → Reporting
+                  </a>
+                </li>
+                <li>
+                  <a href="/automations" className="inline-flex items-center min-h-[44px] hover:text-acid-deep transition-colors">
                     → Automations
                   </a>
                 </li>
@@ -168,17 +196,17 @@ function SiteFooter() {
               <div className="text-ink-faint">Studio</div>
               <ul className="mt-2 text-ink font-bold">
                 <li>
-                  <a href="#work" className="inline-flex items-center min-h-[44px] hover:text-acid-deep transition-colors">
-                    → Work
+                  <a href="/#systems" className="inline-flex items-center min-h-[44px] hover:text-acid-deep transition-colors">
+                    → Systems
                   </a>
                 </li>
                 <li>
-                  <a href="#approach" className="inline-flex items-center min-h-[44px] hover:text-acid-deep transition-colors">
+                  <a href="/#approach" className="inline-flex items-center min-h-[44px] hover:text-acid-deep transition-colors">
                     → Approach
                   </a>
                 </li>
                 <li>
-                  <a href="#contact" className="inline-flex items-center min-h-[44px] hover:text-acid-deep transition-colors">
+                  <a href="/starthere" className="inline-flex items-center min-h-[44px] hover:text-acid-deep transition-colors">
                     → Contact
                   </a>
                 </li>

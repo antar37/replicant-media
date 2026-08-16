@@ -17,7 +17,7 @@ export default function Home() {
       <Hero />
       <Marquee />
       <Services />
-      <Work />
+      <TrustSystems />
       <Manifesto />
       <Approach />
       <Contact />
@@ -104,8 +104,8 @@ function Hero() {
         style={{ animationDelay: "1.15s" }}
       >
         <Magnetic strength={0.32} radius={140}>
-          <a href="#contact" data-game-platform className="btn-acid">
-            <span className="w-2 h-2 bg-ink block" aria-hidden />
+          <a href="/starthere" data-game-platform className="btn-acid">
+            <span className="w-2 h-2 bg-bone block" aria-hidden />
             <span>Talk through the mess</span>
             <span aria-hidden>→</span>
           </a>
@@ -182,6 +182,7 @@ function Services() {
   const services = [
     {
       number: "01",
+      path: "/websites",
       verb: "Clarify",
       title: "Positioning & Website Strategy",
       lede: "We pin down what you sell, who it is for, and why a buyer should trust you before we touch the layout.",
@@ -195,6 +196,7 @@ function Services() {
     },
     {
       number: "02",
+      path: "/websites",
       verb: "Build",
       title: "Websites That Produce Leads",
       lede: "Fast, simple sites for service businesses that need fewer pretty abstractions and more qualified conversations.",
@@ -208,6 +210,7 @@ function Services() {
     },
     {
       number: "03",
+      path: "/seo",
       verb: "Grow",
       title: "SEO, Google Ads & Reporting",
       lede: "Search and paid acquisition with honest reporting: what is working, what is wasting money, and what to do next.",
@@ -221,6 +224,7 @@ function Services() {
     },
     {
       number: "04",
+      path: "/automations",
       verb: "Automate",
       title: "AI & Operations Systems",
       lede: "Practical automations for the boring parts: intake, follow-up, reporting, document handling, and internal workflows.",
@@ -286,234 +290,82 @@ function ServiceCard({ service, index }) {
           </li>
         ))}
       </ul>
+      <a
+        href={service.path}
+        className="mt-8 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.22em] font-bold flip-accent hover:text-acid-deep transition-colors"
+      >
+        <span>Explore {service.title}</span>
+        <span aria-hidden>→</span>
+      </a>
     </article>
   );
 }
 
-/* ---------- Work ---------- */
+/* ---------- Trust systems ---------- */
 
-function Work() {
+function TrustSystems() {
+  const systems = [
+    ["01", "Offer clarity", "Say what the business does, who it serves, why it is credible, and what the buyer should do next."],
+    ["02", "Lead path", "Connect pages, calls to action, Jotform intake, analytics, and follow-up so interest does not leak out of the system."],
+    ["03", "Search base", "Ship crawlable pages, metadata, schema, sitemap coverage, internal links, and performance basics before chasing volume."],
+    ["04", "Decision reporting", "Turn SEO, ads, forms, and traffic into plain-language next actions instead of mystery dashboards."],
+  ];
+
   return (
     <section
-      id="work"
+      id="systems"
       className="px-5 md:px-10 max-w-[1440px] mx-auto pt-28 md:pt-40"
     >
-      <SectionHeader index="III" label="Proof" lines={["WHAT", "THIS MEANS."]} />
-      <WorkCard />
-    </section>
-  );
-}
-
-function WorkCard() {
-  const [ref, visible] = useReveal();
-  return (
-    <div
-      ref={ref}
-      data-game-platform
-      className={`reveal-up ${
-        visible ? "is-visible" : ""
-      } mt-14 md:mt-20 border-2 border-ink bg-ink/25`}
-    >
-      {/* TOP — CRT-style proof screen */}
-      <a
-        href="https://www.alphamechanicals.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="group relative block bg-bone overflow-hidden border-b-2 border-ink p-5 md:p-8"
-        aria-label="Visit Alpha Mechanical (opens in a new tab)"
-      >
-        <div className="border-2 border-ink bg-[#010403] p-5 md:p-8 min-h-[340px] md:min-h-[520px] shadow-[inset_0_0_44px_rgba(120,240,160,0.12),0_0_28px_rgba(120,240,160,0.08)]">
-          <div className="flex items-center justify-between gap-3 font-mono text-[10px] md:text-[11px] uppercase tracking-[0.22em] font-bold text-ink-muted">
-            <span className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 bg-acid block animate-pulse" aria-hidden />
-              <span>replicant/proof/alpha-mechanical</span>
-            </span>
-            <span className="hidden sm:inline text-ink-muted">{"// "}LIVE SYSTEM</span>
-          </div>
-          <div className="mt-10 md:mt-16 font-display font-black uppercase tracking-ultratight leading-[0.82] text-[17vw] md:text-[8.5rem] lg:text-[11rem] text-ink">
-            <span className="block">CLEAR</span>
-            <span className="block text-acid">OFFER</span>
-            <span className="block">FAST SITE</span>
-          </div>
-          <div className="mt-8 grid md:grid-cols-3 gap-px bg-ink/25 border-2 border-ink font-mono text-[11px] uppercase tracking-[0.18em] font-bold">
-            {[
-              ["01", "Service pages"],
-              ["02", "Tracking"],
-              ["03", "Local proof"],
-            ].map(([n, label]) => (
-              <div key={label} className="bg-bone p-4">
-                <div className="text-3xl font-display font-black leading-none">{n}</div>
-                <div className="mt-2 text-ink-muted">{label}</div>
-              </div>
-            ))}
-          </div>
-          <span className="mt-8 inline-flex items-center gap-3 px-4 py-3 bg-acid text-bone border-2 border-acid font-mono text-[11px] font-bold uppercase tracking-[0.22em] group-hover:shadow-[0_0_22px_rgba(255,199,102,0.26)] transition-shadow">
-            <span className="w-2 h-2 bg-bone block" aria-hidden />
-            View live site
-            <span aria-hidden>↗</span>
-          </span>
-        </div>
-      </a>
-
-      {/* LIGHTHOUSE PROOF BAND — verified Google Lighthouse mobile scores */}
-      <div className="border-t-2 border-ink">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-ink">
-          {[
-            ["99", "Performance"],
-            ["100", "Accessibility"],
-            ["100", "Best Practices"],
-            ["100", "SEO"],
-          ].map(([n, label]) => (
-            <div key={label} className="bg-bone p-5 md:p-6">
-              <div className="font-display font-black text-5xl md:text-6xl leading-none tracking-ultratight text-ink">
-                {n}
-              </div>
-              <div className="mt-3 font-mono text-[10px] md:text-[11px] uppercase tracking-[0.2em] text-ink-muted font-bold">
-                {label}
-              </div>
+      <SectionHeader index="III" label="Systems" lines={["WHAT", "GETS BUILT."]} />
+      <div className="mt-14 md:mt-20 border-2 border-ink bg-ink/25">
+        <div className="grid md:grid-cols-12 gap-px bg-ink/25">
+          <div className="md:col-span-7 bg-bone p-7 md:p-10 lg:p-12">
+            <div className="font-mono text-[11px] uppercase tracking-[0.22em] font-bold text-ink-muted">
+              // owned process, not borrowed proof
             </div>
-          ))}
-        </div>
-        <div className="border-t-2 border-ink bg-bone-soft px-5 md:px-7 lg:px-10 py-4 flex items-center justify-between gap-4">
-          <span className="font-mono text-[10px] md:text-[11px] uppercase tracking-[0.22em] font-bold text-ink-muted">
-            {"// "}google lighthouse — mobile, throttled
-          </span>
-          <a
-            href="/static/images/perfect-score.webp"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 font-mono text-[10px] md:text-[11px] uppercase tracking-[0.22em] font-bold text-ink hover:text-acid-deep transition-colors"
-          >
-            <span>View report</span>
-            <span aria-hidden>↗</span>
-          </a>
+            <h2 className="mt-8 font-display font-black uppercase tracking-ultratight leading-[0.84] text-6xl md:text-[5.5rem] lg:text-[6.5rem] text-ink">
+              Clear pages.
+              <span className="block text-acid">Measurable paths.</span>
+              Useful systems.
+            </h2>
+            <p className="mt-7 text-sm md:text-base leading-relaxed font-mono max-w-xl text-ink">
+              <span className="text-ink-muted">[ &gt; ]</span> Replicant Media is built around a simple idea: your website, SEO, ads, forms, reporting, and automations should work as one lead-generation system, not separate pieces of internet furniture.
+            </p>
+            <div className="mt-10">
+              <Magnetic strength={0.25} radius={120}>
+                <a href="/starthere" className="btn-acid">
+                  <span className="w-2 h-2 bg-bone block" aria-hidden />
+                  <span>Send a brief</span>
+                  <span aria-hidden>→</span>
+                </a>
+              </Magnetic>
+            </div>
+          </div>
+          <div className="md:col-span-5 bg-bone-soft p-7 md:p-10 lg:p-12">
+            <div className="font-mono text-[11px] uppercase tracking-[0.22em] font-bold text-ink-muted">
+              What gets checked before traffic
+            </div>
+            <ul className="mt-8 space-y-0">
+              {systems.map(([number, label, body]) => (
+                <li key={label} className="border-b-2 border-ink py-5 last:border-b-0">
+                  <div className="flex items-baseline justify-between gap-4">
+                    <h3 className="font-mono text-[11px] uppercase tracking-[0.16em] font-bold text-ink">
+                      {label}
+                    </h3>
+                    <span className="font-display font-black text-4xl leading-none text-ink">
+                      {number}
+                    </span>
+                  </div>
+                  <p className="mt-3 font-mono text-sm leading-relaxed text-ink-muted">
+                    {body}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
-
-      <div className="grid md:grid-cols-12 gap-px bg-ink/25 border-t-2 border-ink">
-      {/* LEFT — project meta */}
-      <article className="bg-bone p-7 md:p-10 lg:p-12 md:col-span-7 flex flex-col">
-        <div className="flex items-baseline justify-between font-mono text-[11px] uppercase tracking-[0.22em] font-bold text-ink-muted">
-          <span>{"// "}01 / 01 — EXAMPLE OUTCOME</span>
-          <span aria-hidden>—</span>
-        </div>
-
-        <div className="mt-8 md:mt-10">
-          <div className="font-display font-black uppercase tracking-ultratight leading-[0.84] text-6xl md:text-[5.5rem] lg:text-[6.5rem] text-ink">
-            <span className="block">FROM</span>
-            <span className="block">
-              VAGUE TO CLEAR<span className="text-acid-deep">.</span>
-            </span>
-          </div>
-          <a
-            href="https://www.alphamechanicals.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-4 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.22em] text-ink-muted font-bold hover:text-acid-deep transition-colors"
-          >
-            <span>[ alphamechanicals.com ]</span>
-            <span aria-hidden>↗</span>
-          </a>
-        </div>
-
-        <p className="mt-7 text-sm md:text-base leading-relaxed font-mono max-w-md text-ink">
-          <span className="text-ink-muted">[ &gt; ]</span> The pattern is usually the same:
-          a business has the skills, the clients, and the proof, but the site
-          makes people work too hard to understand it. We rebuild the page around{" "}
-          <span className="text-acid font-bold">the offer</span>,{" "}
-          <span className="text-acid font-bold">the buyer</span>, and{" "}
-          <span className="text-acid font-bold">the next step</span>.
-        </p>
-
-        <ul className="mt-8 pt-5 border-t-2 border-ink space-y-2.5 text-sm font-mono">
-          {[
-            "Plain-language offer and service architecture",
-            "Technical SEO and local visibility basics",
-            "Lead tracking, forms, and attribution",
-            "A site the owner can actually explain",
-          ].map((item) => (
-            <li key={item} className="flex items-start gap-3">
-              <span
-                className="text-acid-deep font-bold mt-px"
-                aria-hidden
-              >
-                →
-              </span>
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
-
-        <div className="mt-10">
-          <Magnetic strength={0.25} radius={120}>
-            <a
-              href="https://www.alphamechanicals.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-acid"
-            >
-              <span className="w-2 h-2 bg-ink block" aria-hidden />
-              <span>See example site</span>
-              <span aria-hidden>↗</span>
-            </a>
-          </Magnetic>
-        </div>
-      </article>
-
-      {/* RIGHT — agent-ready score card */}
-      <aside className="bg-bone-soft p-7 md:p-10 lg:p-12 md:col-span-5 flex flex-col">
-        <div className="flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.22em] font-bold text-ink-muted">
-          <span>What we check</span>
-          <span className="flex items-center gap-2">
-            <span
-              className="w-1.5 h-1.5 bg-acid-deep block animate-pulse"
-              aria-hidden
-            />
-            <span className="text-ink">Before launch</span>
-          </span>
-        </div>
-
-        <div className="mt-6 border-2 border-ink bg-bone p-5 md:p-6 relative">
-          <div className="font-display font-black tracking-ultratight leading-[0.85] text-[10rem] md:text-[12rem] text-ink">
-            <span className="bg-acid inline-block px-3">04</span>
-          </div>
-          <div className="mt-5 flex items-center flex-wrap gap-2 font-mono text-[11px] uppercase tracking-[0.22em] font-bold">
-            <span className="bg-ink text-acid px-2 py-1">CHECKS</span>
-            <span className="text-ink">Before traffic</span>
-          </div>
-        </div>
-
-        <ul className="mt-8 space-y-0">
-          {[
-            ["Offer clarity", "01", "Can a stranger explain it?"],
-            ["Lead path", "02", "Can a buyer take action?"],
-            ["Tracking", "03", "Can we see what worked?"],
-          ].map(([label, score, count]) => (
-            <li
-              key={label}
-              className="flex items-center justify-between gap-4 border-b-2 border-ink py-3"
-            >
-              <div className="flex flex-col gap-1">
-                <span className="font-mono text-[11px] uppercase tracking-[0.16em] font-bold text-ink">
-                  {label}
-                </span>
-                <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-muted">
-                  {count} checks
-                </span>
-              </div>
-              <div className="font-display font-black text-4xl md:text-5xl tracking-ultratight leading-none text-ink">
-                {score}
-              </div>
-            </li>
-          ))}
-        </ul>
-
-        <div className="mt-6 font-mono text-[10px] uppercase tracking-[0.22em] text-ink-muted">
-          [ If it cannot be measured or explained, it is not done. ]
-        </div>
-      </aside>
-      </div>
-    </div>
+    </section>
   );
 }
 

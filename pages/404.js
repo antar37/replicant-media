@@ -19,7 +19,7 @@ export default function NotFound() {
         </p>
         <div className="mt-12">
           <Link href="/" className="btn-acid">
-            <span className="w-2 h-2 bg-ink block" aria-hidden />
+            <span className="w-2 h-2 bg-bone block" aria-hidden />
             <span>Back to home</span>
             <span aria-hidden>→</span>
           </Link>

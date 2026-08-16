@@ -12,14 +12,17 @@ const orgSchema = {
     "Replicant Media builds websites, SEO systems, paid acquisition, and practical automations for owner-led service businesses.",
   url: "https://replicant.media",
   image: "https://replicant.media/static/og.png",
+  logo: "https://replicant.media/static/logo.png",
   slogan: "Clear websites. Measurable growth. Useful automation.",
   serviceType: [
     "Web Design",
     "Web Development",
     "Search Engine Optimization",
+    "Google Ads",
+    "Marketing Reporting",
     "Business Automation",
   ],
-  areaServed: "Worldwide",
+  areaServed: ["United States", "Mexico", "Worldwide"],
   brand: { "@type": "Brand", name: "Replicant Media" },
   knowsAbout: [
     "Website design",
@@ -28,6 +31,17 @@ const orgSchema = {
     "Business automation",
     "Conversion optimization",
   ],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Replicant Media services",
+    itemListElement: [
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Websites for service businesses", url: "https://replicant.media/websites" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "SEO systems", url: "https://replicant.media/seo" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Google Ads audits and rebuilds", url: "https://replicant.media/google-ads" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Marketing reporting", url: "https://replicant.media/reporting" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Business automation", url: "https://replicant.media/automations" } },
+    ],
+  },
   contactPoint: {
     "@type": "ContactPoint",
     email: "alex@replicant.media",
