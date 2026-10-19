@@ -3,6 +3,8 @@ import Container from "components/Container";
 import Magnetic from "components/Magnetic";
 import Subscribe from "components/Subscribe";
 import useReveal from "lib/useReveal";
+import { projects } from "lib/portfolio.mjs";
+import Link from "next/link";
 
 function spotlight(e) {
   const el = e.currentTarget;
@@ -18,6 +20,7 @@ export default function Home() {
       <Marquee />
       <Services />
       <TrustSystems />
+      <SelectedWork />
       <Manifesto />
       <Approach />
       <Contact />
@@ -364,6 +367,43 @@ function TrustSystems() {
             </ul>
           </div>
         </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Selected work ---------- */
+function SelectedWork() {
+  return (
+    <section className="px-5 md:px-10 max-w-[1440px] mx-auto pt-28 md:pt-40">
+      <div className="flex items-center gap-6 font-mono text-[11px] uppercase tracking-[0.22em] text-ink font-bold">
+        <span>§ WORK</span>
+        <span className="flex-1 h-[2px] bg-ink" aria-hidden="true" />
+        <span>[ Selected projects ]</span>
+      </div>
+      <div className="mt-8 md:mt-10 flex flex-wrap items-end justify-between gap-6">
+        <h2 className="font-display font-black uppercase tracking-ultratight leading-[0.86] text-[14vw] md:text-[8vw] lg:text-[7rem] text-ink">
+          MADE <span className="text-acid">REAL.</span>
+        </h2>
+        <Link href="/work" className="brutal-link text-ink inline-flex items-center gap-2 min-h-[44px]">
+          See all work <span aria-hidden="true">→</span>
+        </Link>
+      </div>
+      <div className="mt-10 md:mt-14 grid md:grid-cols-2 gap-px border-2 border-ink bg-ink/25">
+        {projects.slice(0, 2).map((project, index) => (
+          <Link key={project.domain} href="/work" className="group bg-bone block min-w-0">
+            <div className="aspect-[16/9] border-b-2 border-ink overflow-hidden bg-bone-deep">
+              <img src={project.image} alt={`Homepage preview of ${project.name}`} loading="lazy" width="1200" height="834" className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.035]" />
+            </div>
+            <div className="p-6 md:p-8 flex items-end justify-between gap-4">
+              <div>
+                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-acid font-bold">{`// ${String(index + 1).padStart(2, "0")} · ${project.category}`}</span>
+                <h3 className="mt-3 font-display font-black uppercase tracking-ultratight leading-none text-4xl md:text-5xl text-ink">{project.name}</h3>
+              </div>
+              <span className="text-acid text-2xl" aria-hidden="true">↗</span>
+            </div>
+          </Link>
+        ))}
       </div>
     </section>
   );
