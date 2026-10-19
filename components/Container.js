@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Cursor from "./Cursor";
@@ -113,6 +114,12 @@ function SiteHeader() {
           >
             SEO
           </a>
+          <Link
+            href="/work"
+            className="hidden sm:inline-flex items-center px-3 py-3 min-h-[44px] font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-ink hover:bg-ink hover:text-bone transition-colors"
+          >
+            Work
+          </Link>
           <a
             href="/websites"
             className="hidden md:inline-flex items-center px-3 py-3 min-h-[44px] font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-ink hover:bg-ink hover:text-bone transition-colors"
@@ -195,6 +202,11 @@ function SiteFooter() {
             <div>
               <div className="text-ink-faint">Studio</div>
               <ul className="mt-2 text-ink font-bold">
+                <li>
+                  <Link href="/work" className="inline-flex items-center min-h-[44px] hover:text-acid-deep transition-colors">
+                    → Work
+                  </Link>
+                </li>
                 <li>
                   <a href="/#systems" className="inline-flex items-center min-h-[44px] hover:text-acid-deep transition-colors">
                     → Systems
