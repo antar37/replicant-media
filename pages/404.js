@@ -4,7 +4,7 @@ import AsciiField from "components/AsciiField";
 
 export default function NotFound() {
   return (
-    <Container title="404 — Replicant Media">
+    <Container title="404 — Replicant Media" robots="noindex, follow" path="/404">
       <section className="px-5 md:px-10 max-w-[1440px] mx-auto pt-12 md:pt-20 pb-24 md:pb-40 min-h-[70vh] flex flex-col justify-center">
         <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-ink-muted font-bold">
           <span className="w-2 h-2 bg-acid-deep block animate-pulse" aria-hidden />

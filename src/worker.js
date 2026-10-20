@@ -154,8 +154,9 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    if (url.hostname === "www.replicant.media") {
+    if (url.hostname === "www.replicant.media" || url.protocol === "http:") {
       url.hostname = "replicant.media";
+      url.protocol = "https:";
       return Response.redirect(url.toString(), 301);
     }
 
@@ -167,10 +168,6 @@ export default {
       return handleHostedForm(env);
     }
 
-    const response = await env.ASSETS.fetch(request);
-    if (response.status === 404 && request.method === "GET") {
-      return env.ASSETS.fetch(new Request(new URL("/404.html", url), request));
-    }
-    return response;
+    return env.ASSETS.fetch(request);
   },
 };
