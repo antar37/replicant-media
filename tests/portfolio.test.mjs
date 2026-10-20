@@ -14,9 +14,11 @@ const requestedDomains = [
   "clewa.org",
   "waterpurification.co.uk",
   "patricktoscano.com",
+  "theant.app",
+  "aviso.center",
 ];
 
-test("portfolio starts with seven distinct, visitable projects", () => {
+test("portfolio includes the requested projects with distinct, visitable previews", () => {
   assert.equal(projects.length, requestedDomains.length);
   assert.deepEqual(projects.map(({ domain }) => domain), requestedDomains);
   for (const project of projects) {

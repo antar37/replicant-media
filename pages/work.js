@@ -7,8 +7,8 @@ export default function Work() {
     <Container
       path="/work"
       title="Selected Work — Replicant Media"
-      description="Explore selected Replicant Media projects spanning coffee, community, nonprofits, water, and legal services."
-      keywords={["Replicant Media portfolio", "website projects", "selected work", "marketing websites"]}
+      description="Explore selected Replicant Media work spanning websites, community organizations, lead generation, and practical software products."
+      keywords={["Replicant Media portfolio", "website projects", "selected work", "web apps", "marketing websites"]}
     >
       <section className="max-w-[1440px] mx-auto px-5 md:px-10 pt-12 md:pt-20">
         <div className="flex items-center gap-6 font-mono text-[11px] uppercase tracking-[0.22em] text-ink font-bold">
@@ -24,7 +24,7 @@ export default function Work() {
             <span className="text-ink-muted">[ &gt; ]</span> Real projects across very different organizations. Each one has its own audience, priorities, and way of making the web useful.
           </p>
           <span className="md:col-span-5 md:text-right font-mono text-[11px] uppercase tracking-[0.22em] text-ink-muted font-bold">
-            {"// 07 projects · more to come"}
+            {`// ${String(projects.length).padStart(2, "0")} projects · more to come`}
           </span>
         </div>
         <div className="mt-10 md:mt-14 border-t-2 border-ink" />
