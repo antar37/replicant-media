@@ -22,6 +22,7 @@ export default function Container(props) {
       "business automation",
     ],
     structuredData: [],
+    robots: "index, follow",
     ...customMeta,
   };
   const cleanPath = meta.path || router.asPath.split("?")[0].split("#")[0] || "/";
@@ -31,7 +32,7 @@ export default function Container(props) {
     <>
       <Head>
         <title>{meta.title}</title>
-        <meta name="robots" content="follow, index" />
+        <meta name="robots" content={meta.robots} />
         <meta name="description" content={meta.description} />
         <meta name="keywords" content={meta.keywords.join(", ")} />
         <link rel="canonical" href={url} />

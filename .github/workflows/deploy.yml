@@ -45,6 +45,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Run regression tests
+        run: node --test tests/*.test.mjs
+
       - name: Verify Cloudflare API token is configured
         run: |
           if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
@@ -59,7 +62,7 @@ jobs:
         run: pnpm exec wrangler deploy
 
       - name: Sync Jotform Worker settings
-        if: ${{ secrets.JOTFORM_FORM_ID != '' }}
+        if: ${{ env.JOTFORM_FORM_ID != '' }}
         run: |
           set -eu
           : > .worker-secrets.env
@@ -85,5 +88,10 @@ jobs:
 
       - name: Smoke test production domain
         run: |
-          curl -fsS --retry 6 --retry-delay 10 https://replicant.media/ >/tmp/replicant.html
-          grep -q "Replicant Media" /tmp/replicant.html
+          set -eu
+          curl -fsS --retry 6 --retry-delay 10 https://replicant.media/ -o replicant-smoke.html
+          grep -q "Replicant Media" replicant-smoke.html
+          rm replicant-smoke.html
+          test "$(curl -sS -o /dev/null -w '%{http_code}' https://replicant.media/seo)" = 200
+          test "$(curl -sS -o /dev/null -w '%{http_code}' https://replicant.media/seo-audit-not-found)" = 404
+          test "$(curl -sS -o /dev/null -w '%{redirect_url}' https://www.replicant.media/seo)" = https://replicant.media/seo
